@@ -8,6 +8,6 @@ add_compile_options(-g -O2 -Wall -Werror -Wno-unused)
 
 include_directories(./)
 
-file(GLOB_RECURSE SOURCES "utility/*.cpp")
+file(GLOB_RECURSE SOURCES "utility/*.cpp" "thread/*.cpp")
 
 add_executable(thread_main ${SOURCES} thread_main.cpp)
