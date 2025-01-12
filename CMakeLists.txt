@@ -11,3 +11,5 @@ include_directories(./)
 file(GLOB_RECURSE SOURCES "utility/*.cpp" "thread/*.cpp")
 
 add_executable(thread_main ${SOURCES} thread_main.cpp)
+
+add_executable(cond_main ${SOURCES} cond_main.cpp)
