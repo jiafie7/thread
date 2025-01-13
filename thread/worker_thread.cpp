@@ -1,9 +1,10 @@
 #include "thread/worker_thread.h"
+#include "thread/thread_pool.h"
 
 using namespace melon::thread;
 
 WorkerThread::WorkerThread()
-  : Task()
+  : Thread()
   , m_task(nullptr)
 {
 }
@@ -12,7 +13,7 @@ WorkerThread::~WorkerThread()
 {
 }
 
-void WorkerThread::assign(Task* task);
+void WorkerThread::assign(Task* task)
 {
   std::unique_lock<std::mutex> lck(m_mutex);
   m_task = task;
@@ -33,7 +34,6 @@ void WorkerThread::run()
     m_task->destroy();
     m_task = nullptr;
 
-    // to do
-    // recycle worker thread back to thread pool
+    Singleton<ThreadPool>::getInstance()->push(this);
   }
 }
